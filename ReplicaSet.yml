@@ -1,0 +1,21 @@
+
+apiVersion: apps/V1
+kind: ReplicaSet
+metadata:
+   name: flip
+spec:
+  replicas: 2
+  selectors:
+    matchExpressions:
+      - {key: myname , operator: In, values: [signup , login , logout]}
+      - {key: env, operator: NotIn, values: [dev]}
+  template:
+    metadata:
+    name: max 
+    labels:
+      myname: login
+    spec:
+     containers:
+      - name: c1  
+        image: ubuntu
+        command: ["/bin/bash", "-c", "while true: do echo login maxxy: sleep 3; done"]

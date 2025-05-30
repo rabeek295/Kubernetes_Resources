@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flip
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      name: deployment
+  template:
+    metadata:
+      name: max
+      labels:
+        name: deployment
+    spec:
+     containers:
+      - name: c1
+        image: ubuntu
+        command: ["/bin/bash", "-c", "while true; do echo login maxxy; sleep 3; done"]

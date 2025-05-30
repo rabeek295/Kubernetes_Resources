@@ -1,0 +1,133 @@
+TASK-1
+Create one podd with one container and image ubuntu.
+
+ ---First configure the two nodes worker and master node.
+ ----> vi pod.yml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: flipkart
+spec:
+    containers:
+      - name: login
+        image: ubuntu
+        command: ["/bin/bash", "-c", "while true; do echo HelloGhosts; sleep 3; done"]
+
+ ----> kubectl apply -f pod.yml
+
+TASK-2
+One pod with two containers.
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: flipkart
+spec:
+    containers:
+      - name: signup
+        image: ubuntu
+        command: ["/bin/bash", "-c", "while true; do echo login; sleep 3; done"]
+      - name: login
+        image: ubuntu
+        command: ["/bin/bash", "-c", "while true; do echo signup; sleep 3; done"]
+
+
+TASK-3
+Create one pod with one container and assign port number 80.
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: flipkart
+spec:
+    containers:
+      - name: login
+        image: nginx
+        ports:
+          - containerPort: 80
+
+
+TASK-4
+Create a own namespace
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+
+Task-4
+
+LABEL SELECTORS
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dev
+  labels:
+    nonveg: mutton
+    veg: mushroom
+spec:
+  containers:
+    - name: mandya
+      image: httpd
+      command: ["/bin/bash","-c","while true; do echo mutton boti mandya; sleep 2; done;"]
+
+TASK-5
+
+REPLICATION CONTROLLER
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: flipkart
+spec:
+  replicas: 2
+  selector:
+    app: httpd
+  template:
+    metadata:
+      name: login
+      labels:
+        app: httpd
+    spec:
+      containers:
+        - name: c1
+          image: httpd
+          ports:
+            - containerPort: 80
+
+
+----------------------
+  kubectl label pod dev sidis=oorugai
+   12  kubectl get pods --show-labels
+   13  kubectl get pods -o wide
+   14  curl 10.32.0.2
+   15  curl 10.32.0.2:80
+   16  kubectl logs dev
+   17  kubectl logs -f dev
+   18  kubectl get pods -l nonveg=mutton
+   19  kubectl delte -f dev
+   20  kubectl delete -f label.yml
+   21  ls
+   22  vi label.yml
+   23  kubectl apply -f label.yml
+   24  vi label.yml
+   25  kubectl apply -f label.yml
+   26  kubectl get rc
+   27  kubectl get pods
+   28  kubectl delete pod flipkart-lkhwm
+   29  kubectl get pods
+   30  kubectl scale replicas=4 rc flipkart
+   31  kubectl scale --replicas=4 rc flipkart
+   32  kubectl get pods
+   33  kubectl delete pod flipkart-n8c8k
+   34  kubectl get pods
+   35  kubectl scale --replicas=1 rc flipkart
+   36  kubectl get pods
+   37  history
+above commands task 4 and 5
+
+----------------------------------------
+
+ 
