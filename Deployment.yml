@@ -16,4 +16,4 @@ spec:
      containers:
       - name: c1
         image: ubuntu
-        command: ["/bin/bash", "-c", "while true; do echo login maxxy; sleep 3; done"]
+        command: ["/bin/bash", "-c", "while true; do echo login rabeek; sleep 3; done"]
